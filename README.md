@@ -7,5 +7,5 @@ a non over-engineered solution for testing my algorithms hw outputs from various
 
 
 ### Demo output
-<img src="https://raw.githubusercontent.com/alexshelto/simplest-tester/main/screenshots/output.png"/>
+<img src="https://raw.githubusercontent.com/alexshelto/simplest-tester/main/screenshot/output.png"/>
 
