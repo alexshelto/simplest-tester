@@ -38,7 +38,7 @@ VERIFY: "2\nSecond Output"
 ### Running
 make sure main.py and test.py is in your project folder with your code and tests.  
 execute main.py script and pass your build file first, then the verify file. 
-``` python3 main.py build.py verify.py ```
+``` python3 main.py build.txt verify.txt ```
 
 ### Demo output
 <img src="https://raw.githubusercontent.com/alexshelto/simplest-tester/main/screenshot/output.png"/>
