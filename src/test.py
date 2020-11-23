@@ -32,16 +32,36 @@ class Test:
       print('>> {}'.format(command))
       os.system(command)
 
+    file.close() #closing file stream
+
 
 
 
   def verify(self):
     try:
-      file = openn(self.verify_file, 'r')
+      file = open(self.verify_file, 'r')
     except:
       print("trouble opening verify file")
       exit(1)
-    pass
+    
+    while True:
+      test_name = file.readline()
+      file_name = file.readline()
+      expected_output = file.readline()
+      #ignore newline
+      file.readline()
+
+      if not test_name or not file_name or not expected_output:
+        print("end of file")
+        file.close()
+        break
+      
+      print('=' * 50)
+      print('Test: {}'.format(test_name))
+      print('Input File: {}'.format(file_name))
+      print('Expecting: {}'.format(expected_output))
+      print('=' * 50)
+
     
 
   def ls(self):
