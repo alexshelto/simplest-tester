@@ -33,8 +33,12 @@ VERIFY: "2\nSecond Output"
 * It is important to remember to keep NAME, FILE, & VERIFY in caps.  
 * Keep your entire *VERIFY* output in quotes, these quotes are to encapsulate the output to verify they wont be checked.  
 * remember to end your program on a newline if its not already doing so -this shouldnt be an issue as its pretty standard-  
-** if your output matches the *VERIFY* and you're recieving a failure, its probably due to not having a newline after your last stdout.  
+  * if your output matches the *VERIFY* and you're recieving a failure, its probably due to not having a newline after your last stdout.  
 
+### Running
+make sure main.py and test.py is in your project folder with your code and tests.  
+execute main.py script and pass your build file first, then the verify file. 
+``` python3 main.py build.py verify.py ```
 
 ### Demo output
 <img src="https://raw.githubusercontent.com/alexshelto/simplest-tester/main/screenshot/output.png"/>
