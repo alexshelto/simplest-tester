@@ -5,7 +5,7 @@
 #
 
 import os
-
+import subprocess
 
 
 class Test:
@@ -37,6 +37,7 @@ class Test:
 
 
 
+
   def verify(self):
     try:
       file = open(self.verify_file, 'r')
@@ -60,6 +61,12 @@ class Test:
       print('Test Name: {}'.format(test_name))
       print('Input File: {}'.format(file_name))
       print('Expecting: {}'.format(expected_output))
+      exe = subprocess.Popen(['./a.out ../test-cases/'+str(file_name)],stdout=subprocess.PIPE, shell=True)
+      output = ''
+      for line in exe.stdout:
+        output += str(line, 'utf-8').replace('\n', '\\n')
+      output = output[:-2]
+      print('Output: {}'.format(output))
       print('=' * 50 + '\n')
 
     
