@@ -1,6 +1,13 @@
 # simplest-tester
 a non over-engineered solution for testing my algorithms hw outputs from various input files
 
+
+#### TODO
+[ ] parse and check build.txt & verify.txt before testing output
+[ ] clean up code
+[ ] possibly extend to other langs depending on users / future classes and applications 
+[ ] nothing more since it should be simple
+
 ## Limitations
 * Currently only made for C++
 * executable must be named a.out 
