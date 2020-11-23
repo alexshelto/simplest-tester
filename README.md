@@ -6,6 +6,7 @@ a simple not over-engineered solution for testing my algorithms hw outputs from 
 - [ ] be able to work as executable from bin using cwd
 - [ ] parse and check build.txt & verify.txt before testing output
 - [ ] clean up code
+- [ ] fix multi line expected output so I dont need ugly quotes and '\n' chars
 - [ ] possibly extend to other langs depending on users / future classes and applications 
 - [ ] nothing more since it should be simple
 
