@@ -3,6 +3,7 @@ a non over-engineered solution for testing my algorithms hw outputs from various
 
 
 #### TODO
+- [ ] be able to work as executable from bin using cwd
 - [ ] parse and check build.txt & verify.txt before testing output
 - [ ] clean up code
 - [ ] possibly extend to other langs depending on users / future classes and applications 
