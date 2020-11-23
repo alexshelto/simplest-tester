@@ -45,9 +45,9 @@ class Test:
       exit(1)
     
     while True:
-      test_name = file.readline()
-      file_name = file.readline()
-      expected_output = file.readline()
+      test_name = file.readline().partition("NAME:")[2].strip()
+      file_name = file.readline().partition("FILE:")[2].strip()
+      expected_output = file.readline().partition("VERIFY:")[2].replace('"', '')
       #ignore newline
       file.readline()
 
@@ -57,10 +57,10 @@ class Test:
         break
       
       print('=' * 50)
-      print('Test: {}'.format(test_name))
+      print('Test Name: {}'.format(test_name))
       print('Input File: {}'.format(file_name))
       print('Expecting: {}'.format(expected_output))
-      print('=' * 50)
+      print('=' * 50 + '\n')
 
     
 
