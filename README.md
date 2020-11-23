@@ -21,13 +21,13 @@ This file will contain the name of your tests, the input file it will produce an
 format for this file is **EXTREMELY** case sensitive
 such a file can look like:    
 <code>
-NAME: Name of test 1
-FILE: inputFileName.extension
-VERIFY: "Hello\nWorld!"
-
-NAME: Name of test 2
-FILE: inputFileName.extension
-VERIFY: "2\nSecond Output" 
+NAME: Name of test 1 <br/>
+FILE: inputFileName.extension <br/>
+VERIFY: "Hello\nWorld!" <br/>
+<br/>
+NAME: Name of test 2 <br/>
+FILE: inputFileName.extension <br/>
+VERIFY: "2\nSecond Output" <br/>
 </code>
 #### Rules for verify.txt
 * It is important to remember to keep NAME, FILE, & VERIFY in caps.  
