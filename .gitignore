@@ -1,6 +1,10 @@
 
-test/
 
+*.txt
+test-cases/
+Makefile
+*.h
+*.cc 
 #vs
 *.DS_Store
 DS_Store/
