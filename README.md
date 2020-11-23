@@ -1,5 +1,5 @@
 # simplest-tester
-a non over-engineered solution for testing my algorithms hw outputs from various input files
+a simple not over-engineered solution for testing my algorithms hw outputs from various input file test cases all at once
 
 
 #### TODO
