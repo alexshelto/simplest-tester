@@ -1,5 +1,6 @@
 
 from test import Test
+#from utils import VerifyParse
 import sys
 
 
@@ -7,7 +8,7 @@ import sys
 
 
 if __name__ == '__main__':
-  if(len(sys.argv) < 2):
+  if(len(sys.argv) < 3):
     print("Failed to pass build.txt & verify.txt to program")
     exit(1)
 
@@ -22,7 +23,9 @@ if __name__ == '__main__':
   #
 
   tester = Test(build_file, verify_file)                 #creating Test object
-  tester.build()  #building with input file build
-  tester.verify()
-  tester.summary()
+  # tester.build()  #building with input file build
+  # tester.verify()
+  # tester.summary()
+  tester.read()
   exit(0)
+
