@@ -23,9 +23,8 @@ if __name__ == '__main__':
   #
 
   tester = Test(build_file, verify_file)                 #creating Test object
-  # tester.build()  #building with input file build
-  # tester.verify()
-  # tester.summary()
-  tester.read()
+  tester.build()  #building with input file build
+  tester.verify()
+  tester.summary()
   exit(0)
 

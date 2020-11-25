@@ -5,7 +5,7 @@
 #
 import os
 import subprocess
-# from colorama import Fore, Back, Style
+from colorama import Fore, Back, Style
 
 
 
@@ -25,22 +25,6 @@ def parseTestCaseDetails(test_str: str)->str:
 
   return test_name, file_name, expected_output
 
-
-
-def parseExpected(file) -> str:
-  print("Inside of parse expected")
-  constructed_str = ''
-  while True:
-    line = file.readline()
-    print("In line: " + str(line))
-    if line.replace(' ', '') == '</output>' : #or line.replace(' ', '') == '':
-      print("EXIT ")
-      break
-    else:
-      constructed_str += line
-
-  print("LEAVING")
-  return constructed_str
 
 class Test:
   def __init__(self, build_file: str, verify_file: str):
@@ -73,6 +57,7 @@ class Test:
     try:
       with open(self.verify_file, 'r') as myFile:
         text = myFile.read()
+        myFile.close()
     except:
       print("trouble opening verify file")
       exit(1)
@@ -92,33 +77,34 @@ class Test:
 
 
 
-
+'''
+Verify opens the verify file, seperates all test cases by '@case' identifier
+Loops through each case, grabs test name, file name, and expected output
+Procedes to run the program with the given file name, compares output to expected output
+'''
   def verify(self):
     try:
-      file = open(self.verify_file, 'r')
+      with open(self.verify_file, 'r') as myFile:
+        text = myFile.read()
+        myFile.close()
     except:
       print("trouble opening verify file")
       exit(1)
-    
 
-    #reading verify file, running correct code file and comparing outputs
-    while True:
-      test_name = file.readline().partition("NAME:")[2].strip()
-      file_name = file.readline().partition("FILE:")[2].strip()
-      expected_output = parseExpected(file)
+    seperator = '@case'             #string to split verify.txt into array indexes of each cae
+    tests = text.split(seperator)[1:]  #split into list by '@case', empty first index so remove
 
-      if not test_name or not file_name or not expected_output:
-        file.close()
-        break
-      
+    #loop through list to build each test case info
+    for test in tests:
+      test_name, file_name, expected_output = parseTestCaseDetails(test)
+
       #running file and grabbing stdout 
       output = ''
       exe = subprocess.Popen(['./a.out ../test-cases/'+str(file_name)],stdout=subprocess.PIPE, shell=True)
       for line in exe.stdout:
         output += line.decode('utf-8')
-      output = output[:-2] #removes final new line
-
-      self.display_test(test_name, file_name, expected_output, output)
+      
+      self.display_test(test_name, file_name, expected_output.strip(), output.strip())
 
 
 
