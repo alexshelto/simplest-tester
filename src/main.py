@@ -15,8 +15,8 @@ if __name__ == '__main__':
   build_file = sys.argv[1]
   verify_file = sys.argv[2]
 
-  print(build_file)
-  print(verify_file)
+  # print(build_file)
+  # print(verify_file)
 
   # 
   # run tests on file before proceding to build and verify

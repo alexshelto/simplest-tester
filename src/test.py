@@ -5,7 +5,27 @@
 #
 import os
 import subprocess
-from colorama import Fore, Back, Style
+# from colorama import Fore, Back, Style
+
+
+
+
+def parseTestCaseDetails(test_str: str)->str:
+  start = test_str.find("NAME:") + len("NAME:")
+  end = test_str.find('FILE:')
+  test_name = test_str[start:end].strip()
+
+  start = test_str.find("FILE:") + len("FILE:")
+  end = test_str.find("VERIFY:") 
+  file_name = test_str[start:end].strip()
+
+  start = test_str.find("<output>") + len("<output>")
+  end = test_str.find("</output>")
+  expected_output = test_str[start:end].strip()
+
+  return test_name, file_name, expected_output
+
+
 
 def parseExpected(file) -> str:
   print("Inside of parse expected")
@@ -58,11 +78,17 @@ class Test:
       exit(1)
 
     seperator = '@case'             #string to split verify.txt into array indexes of each cae
-    tests = text.split(seperator)  #split into list by '@case'
+    tests = text.split(seperator)[1:]  #split into list by '@case', empty first index so remove
 
     #loop through list to build each test case info
     for test in tests:
-      print(test.split('FILE:'))
+      test_name, file_name, expected_output = parseTestCaseDetails(test)
+
+      print("File name: {}".format(file_name))
+      print('test name: {}'.format(test_name))
+      print("Expected output: {}".format(expected_output))
+
+    print("Done")
 
 
 
