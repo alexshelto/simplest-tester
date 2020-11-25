@@ -8,6 +8,24 @@ import subprocess
 from colorama import Fore, Back, Style
 
 
+
+
+def parseTestCaseDetails(test_str: str)->str:
+  start = test_str.find("NAME:") + len("NAME:")
+  end = test_str.find('FILE:')
+  test_name = test_str[start:end].strip()
+
+  start = test_str.find("FILE:") + len("FILE:")
+  end = test_str.find("VERIFY:") 
+  file_name = test_str[start:end].strip()
+
+  start = test_str.find("<output>") + len("<output>")
+  end = test_str.find("</output>")
+  expected_output = test_str[start:end].strip()
+
+  return test_name, file_name, expected_output
+
+
 class Test:
   def __init__(self, build_file: str, verify_file: str):
     self.build_file = build_file
@@ -35,36 +53,58 @@ class Test:
     file.close() #closing file stream
 
 
-
-
-
-  def verify(self):
+  def read(self):
     try:
-      file = open(self.verify_file, 'r')
+      with open(self.verify_file, 'r') as myFile:
+        text = myFile.read()
+        myFile.close()
     except:
       print("trouble opening verify file")
       exit(1)
-    
 
-    #reading verify file, running correct code file and comparing outputs
-    while True:
-      test_name = file.readline().partition("NAME:")[2].strip()
-      file_name = file.readline().partition("FILE:")[2].strip()
-      expected_output = file.readline().partition("VERIFY:")[2].replace('"', '').strip()
-      file.readline() #ignore newline
+    seperator = '@case'             #string to split verify.txt into array indexes of each cae
+    tests = text.split(seperator)[1:]  #split into list by '@case', empty first index so remove
 
-      if not test_name or not file_name or not expected_output:
-        file.close()
-        break
-      
+    #loop through list to build each test case info
+    for test in tests:
+      test_name, file_name, expected_output = parseTestCaseDetails(test)
+
+      print("File name: {}".format(file_name))
+      print('test name: {}'.format(test_name))
+      print("Expected output: {}".format(expected_output))
+
+    print("Done")
+
+
+
+'''
+Verify opens the verify file, seperates all test cases by '@case' identifier
+Loops through each case, grabs test name, file name, and expected output
+Procedes to run the program with the given file name, compares output to expected output
+'''
+  def verify(self):
+    try:
+      with open(self.verify_file, 'r') as myFile:
+        text = myFile.read()
+        myFile.close()
+    except:
+      print("trouble opening verify file")
+      exit(1)
+
+    seperator = '@case'             #string to split verify.txt into array indexes of each cae
+    tests = text.split(seperator)[1:]  #split into list by '@case', empty first index so remove
+
+    #loop through list to build each test case info
+    for test in tests:
+      test_name, file_name, expected_output = parseTestCaseDetails(test)
+
       #running file and grabbing stdout 
       output = ''
       exe = subprocess.Popen(['./a.out ../test-cases/'+str(file_name)],stdout=subprocess.PIPE, shell=True)
       for line in exe.stdout:
-        output += line.decode('utf-8').replace('\n', '\\n')
-      output = output[:-2] #removes final new line
-
-      self.display_test(test_name, file_name, expected_output, output)
+        output += line.decode('utf-8')
+      
+      self.display_test(test_name, file_name, expected_output.strip(), output.strip())
 
 
 
@@ -84,7 +124,7 @@ class Test:
     print('Input File: {}\n'.format(file))
     print('Expecting: {}'.format(expected))
     print('Output: {}'.format(output))
-    print('=' * 50 + '\n')
+    print('=' * 50 + '\n') 
 
 
   def summary(self):

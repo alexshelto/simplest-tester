@@ -32,11 +32,16 @@ such a file can look like:
 ```
 NAME: Name of test 1 
 FILE: inputFileName.extension 
-VERIFY: "Hello\nWorld!" 
+VERIFY:<output>
+hello world
+</output>
 
 NAME: Name of test 2 
 FILE: inputFileName.extension 
-VERIFY: "2\nSecond Output" 
+VERIFY:<output>
+2
+second output
+</output>
 ```
 #### Rules for verify.txt
 * It is important to remember to keep NAME, FILE, & VERIFY in caps.  
