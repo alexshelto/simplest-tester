@@ -55,5 +55,5 @@ execute main.py script and pass your build file first, then the verify file.
 ``` python3 main.py build.txt verify.txt ```
 
 ### Demo output
-<img src="https://raw.githubusercontent.com/alexshelto/simplest-tester/main/screenshot/output.png"/ width="400" height="700">
+<img src="https://raw.githubusercontent.com/alexshelto/simplest-tester/main/screenshot/output.png" width="400" height="700" />
 
