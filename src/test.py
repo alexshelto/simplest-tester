@@ -33,10 +33,9 @@ class Test:
     self.passed = 0
     self.failed = 0
 
-  '''
-  build(): responsible for executing all commands inside of build.txt file
-  '''
+
   def build(self) -> None:
+    """build(): responsible for executing all commands inside of build.txt file""" 
     try:
       file = open(self.build_file, 'r')
     except:
@@ -68,21 +67,18 @@ class Test:
     #loop through list to build each test case info
     for test in tests:
       test_name, file_name, expected_output = parseTestCaseDetails(test)
-
       print("File name: {}".format(file_name))
       print('test name: {}'.format(test_name))
       print("Expected output: {}".format(expected_output))
 
-    print("Done")
 
 
-
-'''
-Verify opens the verify file, seperates all test cases by '@case' identifier
-Loops through each case, grabs test name, file name, and expected output
-Procedes to run the program with the given file name, compares output to expected output
-'''
   def verify(self):
+    """
+    Verify opens the verify file, seperates all test cases by '@case' identifier
+    Loops through each case, grabs test name, file name, and expected output
+    Procedes to run the program with the given file name, compares output to expected output
+    """
     try:
       with open(self.verify_file, 'r') as myFile:
         text = myFile.read()
@@ -122,7 +118,7 @@ Procedes to run the program with the given file name, compares output to expecte
     print(Style.RESET_ALL)
     print('Test Name: {}'.format(name))
     print('Input File: {}\n'.format(file))
-    print('Expecting: {}'.format(expected))
+    print('Expecting: {}\n'.format(expected))
     print('Output: {}'.format(output))
     print('=' * 50 + '\n') 
 
